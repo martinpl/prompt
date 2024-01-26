@@ -2,16 +2,18 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use App\Extensions;
+use App\Support\Macros\CollectionMacros;
 
-class AppServiceProvider extends ServiceProvider
+class AppServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**
      * Register any application services.
      */
     public function register(): void
     {
-        //
+        CollectionMacros::bootstrap();
+        Extensions::bootstrap();
     }
 
     /**
