@@ -44,7 +44,9 @@ class Extensions
         foreach ($extensionFiles as $extensionPath) {
             $namespace = 'Extensions\\'.str(str($extensionPath)->explode('/')->index(-2))->studly();
             $class = $namespace.'\\'.basename($extensionPath, '.php');
-            self::$extension[] = new $class;
+            $extension = new $class;
+            $extension->register();
+            self::$extension[] = $extension;
         }
     }
 }
