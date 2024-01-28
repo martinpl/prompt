@@ -28,7 +28,7 @@ class Command
         if (str_contains($component, '\\')) {
             Route::get($this->route, $component)->middleware('web');
         } else {
-            Volt::route($this->route, "{$this->extension->name}.{$this->name}")->middleware('web');
+            Volt::route($this->route, "{$this->extension->name}.{$component}")->middleware('web');
         }
 
         return $this;
