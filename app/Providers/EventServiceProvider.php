@@ -2,12 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
-use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 
-class EventServiceProvider extends ServiceProvider
+class EventServiceProvider extends \Illuminate\Foundation\Support\Providers\EventServiceProvider
 {
     /**
      * The event to listener mappings for the application.
@@ -15,8 +12,11 @@ class EventServiceProvider extends ServiceProvider
      * @var array<class-string, array<int, class-string>>
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
+        \App\Events\WindowShortcut::class => [
+            \App\Listeners\ToggleWindow::class,
+        ],
+        \Native\Laravel\Events\MenuBar\MenuBarShown::class => [
+            \App\Listeners\ToggleWindow::class,
         ],
     ];
 

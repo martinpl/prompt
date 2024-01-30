@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
-use Native\Laravel\Facades\Window;
 use Native\Laravel\Contracts\ProvidesPhpIni;
+use Native\Laravel\Facades\GlobalShortcut;
+use Native\Laravel\Facades\MenuBar;
+use Native\Laravel\Menu\Menu;
 
 class NativeAppServiceProvider implements ProvidesPhpIni
 {
@@ -13,7 +15,19 @@ class NativeAppServiceProvider implements ProvidesPhpIni
      */
     public function boot(): void
     {
-        Window::open();
+        GlobalShortcut::key('CommandOrControl+Q')
+            ->event(\App\Events\WindowShortcut::class)
+            ->register();
+
+        MenuBar::create()
+            // ->showDockIcon() // https://github.com/NativePHP/laravel/issues/211
+            ->icon(resource_path('images/app.png'))
+            ->withContextMenu(
+                Menu::new()
+                    ->event(\App\Events\WindowShortcut::class, 'Open Thing')
+                    ->quit()
+            )
+            ->onlyShowContextMenu();
     }
 
     /**

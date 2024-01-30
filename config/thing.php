@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'paths' => [base_path('extensions')]
+    'paths' => [storage_path('extensions')],
 ];
