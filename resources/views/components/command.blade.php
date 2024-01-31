@@ -13,6 +13,13 @@
         {{ $slot }}
     </div>
     <footer class="w-full flex justify-between py-3 px-4 bg-zinc-800">
+        <x-dropdown>
+            <x-slot:head>
+                head
+            </x-slot:head>
+            <div>Preferences</div>
+            <div>Quit</div>
+        </x-dropdown>
         <div id="actions" wire:ignore></div>
     </footer>
 </div>
