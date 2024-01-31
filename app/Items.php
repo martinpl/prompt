@@ -15,6 +15,11 @@ trait Items
         $this->reset('selected');
     }
 
+    public function updatedSelected()
+    {
+        $this->js('document.querySelector(`[data-index="${$wire.selected}"]`).scrollIntoView(false)');
+    }
+
     public function click($key)
     {
         if ($this->selected == $key) {

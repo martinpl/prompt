@@ -14,14 +14,12 @@
         },
         up() {
             if (this.count()) {
-                $wire.selected = ($wire.selected - 1 + this.count()) % this.count();
-                $wire.$refresh();
+                $wire.$set('selected', ($wire.selected - 1 + this.count()) % this.count())
             }
         },
         down() {
             if (this.count()) {
-                $wire.selected = ($wire.selected + 1) % this.count();
-                $wire.$refresh();
+                $wire.$set('selected', ($wire.selected + 1) % this.count())
             }
         }
     }))
