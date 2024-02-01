@@ -1,7 +1,7 @@
 @if ($this->selected == \App\View\Components\List\Item::$index)
     @teleport('#actions')
         <div class="flex gap-2">
-            <div class="flex gap-2" wire:click="enter">
+            <div class="flex gap-2 hover:bg-slate-500" wire:click="enter">
                 <div class="*:hidden [&>:first-child]:block">
                     {{ $slot }}
                 </div>
