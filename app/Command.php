@@ -9,6 +9,8 @@ class Command
 {
     public $name;
 
+    public $type = 'Command';
+
     public $route;
 
     public static function create($title, $extension)
