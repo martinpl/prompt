@@ -8,6 +8,9 @@
         @isset($this->query)
             <input type="text" placeholder="Search..." class="w-full text-xl focus:outline-0 bg-neutral-800" wire:model.live="query" autofocus>
         @endisset
+        @isset ($this->afterSearch)
+            <livewire:dynamic-component :is="$this->afterSearch" />
+        @endisset
     </header>
     <div {{ $attributes->merge(['class' => 'h-full overflow-x-auto m-2']) }}>
         {{ $slot }}

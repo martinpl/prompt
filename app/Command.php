@@ -13,6 +13,8 @@ class Command
 
     public $route;
 
+    public $action;
+
     public static function create($title, $extension)
     {
         return new self($title, $extension);
@@ -32,6 +34,20 @@ class Command
         } else {
             Volt::route($this->route, "{$this->extension->name}.{$component}")->middleware('web');
         }
+
+        return $this;
+    }
+
+    public function type($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function action($action)
+    {
+        $this->action = $action;
 
         return $this;
     }

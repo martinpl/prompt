@@ -19,7 +19,15 @@ class Commands extends \Livewire\Component
 
     public function enter()
     {
-        $this->redirect($this->commands->index($this->selected)->route);
+        $command = $this->commands->index($this->selected);
+
+        if ($command->action) {
+            ($command->action)($this);
+        }
+
+        if ($command->route) {
+            $this->redirect($command->route);
+        }
     }
 
     public function escape()
