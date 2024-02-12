@@ -1,10 +1,11 @@
-@props(['title', 'action'])
-@use('App\View\Components\List\Item')
-@use('App\View\Components\Action')
+@props(['title', 'action' => false, 'index'])
 
-@if ($this->selected == Item::$index)
-    <div @if (Action::$index == 0) wire:keydown.window.enter="{{ $action }}" @endif>
-        {{ $title }}
-    </div>
-    @php(Action::$index++)
-@endif
+@php
+    if ($index == 0) {
+        $attributes = $attributes->merge(['wire:keydown.window.enter' => $action]);
+    }
+@endphp
+
+<x-dropdown.item {{ $attributes->merge(['wire:click' => $action]) }} :$index>
+    {{ $title }}
+</x-dropdown.item>
