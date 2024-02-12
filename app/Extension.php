@@ -22,4 +22,11 @@ abstract class Extension
 
         return $command;
     }
+
+    public static function meta($key)
+    {
+        $type = str(static::class)->classBasename()->value;
+
+        return new Meta($type, $key);
+    }
 }
