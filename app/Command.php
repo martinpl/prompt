@@ -11,9 +11,13 @@ class Command
 
     public $type = 'Command';
 
+    public $mode = 'view';
+
     public $route;
 
     public $action;
+
+    public $actions;
 
     public static function create($title, $extension)
     {
@@ -48,6 +52,20 @@ class Command
     public function action($action)
     {
         $this->action = $action;
+
+        return $this;
+    }
+
+    public function mode($mode)
+    {
+        $this->mode = $mode;
+
+        return $this;
+    }
+
+    public function actions($actions)
+    {
+        $this->actions = $actions;
 
         return $this;
     }

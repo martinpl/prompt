@@ -2,11 +2,15 @@
 
 namespace App\Livewire;
 
+use Livewire\Attributes\Session;
 use Native\Laravel\Facades\Window;
 
 class Commands extends \Livewire\Component
 {
     use \App\Items;
+
+    #[Session]
+    public $selected = 0;
 
     #[\Livewire\Attributes\Computed]
     public function commands()
@@ -14,6 +18,7 @@ class Commands extends \Livewire\Component
         return \App\Extensions::list()
             ->map(fn ($extension) => $extension->commands)
             ->flatten()
+            ->filter(fn ($command) => $command->mode == 'view')
             ->filter(fn ($command) => str_contains(strtolower($command->title), strtolower($this->query)));
     }
 
