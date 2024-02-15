@@ -5,7 +5,7 @@
         {{ $head }}
     </div>
     <div class="absolute bottom-6 {{ $postion == 'left' ? 'left-0' : 'right-0' }} pointer-events-none opacity-0 grid gap-2 bg-neutral-700 rounded-lg p-2" 
-        :class="show && 'pointer-events-auto opacity-100'" data-body>
+        :class="show && 'pointer-events-auto opacity-100'" data-id="body">
         {{ $slot }}
         <x-text-input x-ref="search" type="text" 
             @keydown.enter.stop="enter"
@@ -25,7 +25,7 @@
             this.$refs.search.focus()
         },
         count() {
-            return this.$root.querySelectorAll('[data-body] > div').length;
+            return this.$root.querySelectorAll('[data-id="body"] > [data-id="item"]').length;
         },
         up() {
             this.selected = (this.selected - 1 + this.count()) % this.count()
