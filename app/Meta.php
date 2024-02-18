@@ -26,7 +26,7 @@ class Meta
 
     public function first()
     {
-        self::get()->first();
+        return $this->get()->first();
     }
 
     public function insert($value)
