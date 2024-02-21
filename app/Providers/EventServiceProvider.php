@@ -7,25 +7,13 @@ use Illuminate\Support\Facades\Event;
 class EventServiceProvider extends \Illuminate\Foundation\Support\Providers\EventServiceProvider
 {
     /**
-     * The event to listener mappings for the application.
-     *
-     * @var array<class-string, array<int, class-string>>
-     */
-    protected $listen = [
-        \App\Events\WindowShortcut::class => [
-            \App\Listeners\ToggleWindow::class,
-        ],
-        \Native\Laravel\Events\MenuBar\MenuBarShown::class => [
-            \App\Listeners\ToggleWindow::class,
-        ],
-    ];
-
-    /**
      * Register any events for your application.
      */
     public function boot(): void
     {
-        //
+        Event::listen(fn (\App\Events\Thing $event) => abort(redirect('/thing/toggle')));
+        Event::listen(fn (\App\Events\Settings $event) => abort(redirect('/thing/settings')));
+        Event::listen(fn (\Native\Laravel\Events\MenuBar\MenuBarShown $event) => abort(redirect('/thing/toggle')));
     }
 
     /**

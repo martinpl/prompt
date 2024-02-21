@@ -16,7 +16,7 @@ class NativeAppServiceProvider implements ProvidesPhpIni
     public function boot(): void
     {
         GlobalShortcut::key('CommandOrControl+Q')
-            ->event(\App\Events\WindowShortcut::class)
+            ->event(\App\Events\Thing::class)
             ->register();
 
         MenuBar::create()
@@ -24,7 +24,8 @@ class NativeAppServiceProvider implements ProvidesPhpIni
             ->icon(resource_path('images/app.png'))
             ->withContextMenu(
                 Menu::new()
-                    ->event(\App\Events\WindowShortcut::class, 'Open Thing')
+                    ->event(\App\Events\Thing::class, 'Open Thing')
+                    ->event(\App\Events\Settings::class, 'Preferences')
                     ->quit()
             )
             ->onlyShowContextMenu();

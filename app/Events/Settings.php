@@ -2,6 +2,6 @@
 
 namespace App\Events;
 
-class WindowShortcut
+class Settings
 {
 }

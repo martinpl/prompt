@@ -18,7 +18,7 @@ class Commands extends \Livewire\Component
         return \App\Extensions::list()
             ->map(fn ($extension) => $extension->commands)
             ->flatten()
-            ->filter(fn ($command) => $command->mode == 'view')
+            ->filter(fn ($command) => $command->mode == 'view' && $command->enabled)
             ->filter(fn ($command) => str_contains(strtolower($command->title), strtolower($this->query)));
     }
 

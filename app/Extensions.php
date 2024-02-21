@@ -2,18 +2,23 @@
 
 namespace App;
 
+use App\Livewire\Settings;
+
 class Extensions
 {
-    public static $extension = [];
+    public static $list = [];
+
+    public static $settings = [];
 
     public static function list()
     {
-        return collect(self::$extension);
+        return collect(self::$list);
     }
 
     public static function bootstrap()
     {
         self::autoloader();
+        self::settings();
         self::register();
     }
 
@@ -46,7 +51,12 @@ class Extensions
             $class = $namespace.'\\'.basename($extensionPath, '.php');
             $extension = new $class;
             $extension->register();
-            self::$extension[] = $extension;
+            self::$list[] = $extension;
         }
+    }
+
+    private static function settings()
+    {
+        self::$settings = Settings::meta('extensions')->first();
     }
 }

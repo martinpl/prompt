@@ -1,5 +1,5 @@
 <div class="h-screen flex flex-col bg-neutral-800 text-white rounded-xl overflow-hidden">
-    <header class="flex py-3 px-4" wire:keydown.window.escape="escape">
+    <header class="flex py-3 px-4 border-b border-neutral-700" wire:keydown.window.escape="escape">
         @if ($this->__name != 'app.livewire.commands')
             <button class="mr-2" wire:click="escape">
                 <x-keycap><-</x-keycap>
@@ -20,8 +20,8 @@
             <x-slot:head>
                 head
             </x-slot:head>
-            <div>Preferences</div>
-            <div>Quit</div>
+            <x-dropdown.item :href="route('thing', 'settings')" index="0">Preferences</x-dropdown.item>
+            <x-dropdown.item :href="route('thing', 'quit')" index="1">Quit</x-dropdown.item>
         </x-dropdown>
         <div id="actions" wire:ignore></div>
     </footer>

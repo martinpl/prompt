@@ -14,3 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', App\Livewire\Commands::class)->name('commands');
+Route::get('/thing/{command}', App\Http\Controllers\Thing::class)->name('thing');
+Route::get('/settings', App\Livewire\Settings::class)->name('settings');
