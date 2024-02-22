@@ -16,11 +16,11 @@ class Command
 
     public $route;
 
-    public $action;
+    public $execute;
 
     public $actions;
 
-    public $settings;
+    public $options;
 
     public function __construct(public $title, public $extension, public $enabled)
     {
@@ -30,6 +30,20 @@ class Command
     public static function create($title, $extension, $enabled)
     {
         return new self($title, $extension, $enabled);
+    }
+
+    public function type($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function mode($mode)
+    {
+        $this->mode = $mode;
+
+        return $this;
     }
 
     public function livewire($component)
@@ -45,23 +59,9 @@ class Command
         return $this;
     }
 
-    public function type($type)
+    public function execute(Closure $execute)
     {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    public function action($action)
-    {
-        $this->action = $action;
-
-        return $this;
-    }
-
-    public function mode($mode)
-    {
-        $this->mode = $mode;
+        $this->execute = $execute;
 
         return $this;
     }
@@ -73,9 +73,9 @@ class Command
         return $this;
     }
 
-    public function settings(Closure $settings)
+    public function options(Closure $options)
     {
-        $this->settings = $settings;
+        $this->options = $options;
 
         return $this;
     }

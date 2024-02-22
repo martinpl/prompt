@@ -26,8 +26,8 @@ class Commands extends \Livewire\Component
     {
         $command = $this->commands->index($this->selected);
 
-        if ($command->action) {
-            ($command->action)($this);
+        if ($command->execute) {
+            ($command->execute)($this);
         }
 
         if ($command->route) {
