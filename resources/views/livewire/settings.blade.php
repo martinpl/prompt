@@ -1,11 +1,10 @@
 <div x-data="settings" class="h-screen bg-neutral-800 text-white rounded-xl overflow-hidden flex">
-    <nav>
+    {{-- <nav>
         <button @click="tab = 'extensions'">Extensions</button>
-    </nav>
-    <main>
+    </nav> --}}
+    <main class="w-full">
         <div x-show="tab == 'extensions'" x-cloak>
-            <div class="grid grid-cols-6">
-                <div></div>
+            <div class="grid grid-cols-3">
                 <div>Name</div>
                 <div>Type</div>
                 {{-- <div>Alias</div>
@@ -15,12 +14,14 @@
             <div>
                 @foreach ($this->extensions as $extension)
                     <div x-data="{ show: false }">
-                        <div @class(['grid grid-cols-6', 'bg-neutral-700' => $selected == $extension::class]) wire:click="$set('selected', '{{ addslashes($extension::class) }}')">
-                            <diV @click="show = !show">
-                                <span x-show="show">&#9660;</span>
-                                <span x-show="!show">&#5171;</span>
+                        <div @class(['grid grid-cols-3', 'bg-neutral-700' => $selected == $extension::class]) wire:click="$set('selected', '{{ addslashes($extension::class) }}')">
+                            <div class="flex gap-2">
+                                <div @click="show = !show">
+                                    <span x-show="show">&#9660;</span>
+                                    <span x-show="!show">&#5171;</span>
+                                </div>
+                                {{ $extension->title }}
                             </div>
-                            <div>{{ $extension->title }}</div>
                             <div>
                                 Extension
                             </div>
@@ -31,8 +32,7 @@
                         @isset ($extension->commands)
                             <div x-show="show">
                                 @foreach ($extension->commands as $command)
-                                    <div @class(['grid grid-cols-6', 'bg-neutral-700' => $selected == $extension::class.'.'.$command->name]) wire:click="$set('selected', '{{ addslashes($extension::class).'.'.$command->name }}')">
-                                        <div></div>
+                                    <div @class(['grid grid-cols-3', 'bg-neutral-700' => $selected == $extension::class.'.'.$command->name]) wire:click="$set('selected', '{{ addslashes($extension::class).'.'.$command->name }}')">
                                         <div class="pl-4">{{ $command->title }}</div>
                                         <div>
                                             {{ $command->type }}
@@ -53,11 +53,22 @@
             </div>
         </div>
     </main>
-    @isset ($this->aside)
+    @if ($this->selectedExtension || $this->selectedCommand)
         <aside>
-            <livewire:dynamic-component :is="$this->aside" />
+            @if ($this->selectedExtension)
+                {{ $this->selectedExtension->title }}
+                @if (method_exists($this->selectedExtension, 'options'))
+                    <livewire:dynamic-component :is="$this->selectedExtension->options()" />
+                @endif
+            @endif
+            @if ($this->selectedCommand)
+                {{ $this->selectedCommand->title }}
+                @isset($this->selectedCommand->options)
+                    <livewire:dynamic-component :is="($this->selectedCommand->options)()" />
+                @endisset
+            @endif
         </aside>
-    @endisset
+    @endif
 </div>
 
 @script

@@ -20,7 +20,7 @@ abstract class Extension
 
     public function command($title)
     {
-        $enabled = (static::option('enabled') ?? true) && (self::option(command: str($title)->slug->value, key: 'enabled') ?? true);
+        $enabled = (self::setting('enabled') ?? true) && (self::commandSetting(str($title)->slug->value, 'enabled') ?? true);
         $command = Command::create($title, $this, $enabled);
         $this->commands[] = $command;
 
@@ -34,14 +34,13 @@ abstract class Extension
         return new Meta($type, $key);
     }
 
-    public static function option($key, $command = null)
+    public static function setting($key)
     {
-        if ($command) {
-            return Extensions::$settings[static::class]['commands'][$command][$key] ?? null;
-        }
+        return Extensions::$settings[static::class][$key] ?? null;
+    }
 
-        if (! $command) {
-            return Extensions::$settings[static::class][$key] ?? null;
-        }
+    public static function commandSetting($command, $key)
+    {
+        return Extensions::$settings[static::class]['commands'][$command][$key] ?? null;
     }
 }

@@ -14,20 +14,17 @@ class Settings extends \Livewire\Component
 
     public function mount()
     {
-        $this->settings = Extensions::list()
+        $this->settings = $this->extensions()
             ->mapWithKeys(fn ($extension) => [$extension::class => [
-                'title' => $extension->title,
-                'enabled' => true,
-                'commands' => collect($extension->commands)
-                    ->mapWithKeys(fn ($extension) => [$extension->name => [
-                        'title' => $extension->title,
-                        'alias' => '',
-                        'hotkey' => '',
-                        'enabled' => true,
+                'enabled' => $extension::class::setting('enabled') ?? true,
+                'commands' => $extension->commands->mapWithKeys(
+                    fn ($command) => [$command->name => [
+                        'enabled' => $extension::class::commandSetting($command->name, 'enabled') ?? true,
+                        'alias' => $extension::class::commandSetting($command->name, 'alias') ?? '',
+                        'hotkey' => $extension::class::commandSetting($command->name, 'hotkey') ?? '',
                     ]])
                     ->all(),
             ]])
-            ->merge(self::meta('extensions')->first()) // TODO: We keeping removed extensions data?
             ->all();
     }
 
@@ -43,29 +40,26 @@ class Settings extends \Livewire\Component
     }
 
     #[Computed]
-    public function aside()
+    public function selectedExtension()
     {
-        if (! $this->selected) {
+        if (str_contains($this->selected, '.') || ! $this->selected) {
             return;
         }
 
+        return $this->extensions->firstWhere(fn ($item) => $item::class == $this->selected);
+    }
+
+    #[Computed]
+    public function selectedCommand()
+    {
         if (! str_contains($this->selected, '.')) {
-            $extension = $this->extensions->firstWhere(fn ($item) => $item::class == $this->selected);
-
-            if (method_exists($extension, 'settings')) {
-                return $extension->settings();
-            }
+            return;
         }
 
-        if (str_contains($this->selected, '.')) {
-            [$extension, $command] = explode('.', $this->selected);
-            $extension = $this->extensions->firstWhere(fn ($item) => $item::class == $extension);
-            $command = $extension->commands->firstWhere('name', $command);
+        [$extension, $command] = explode('.', $this->selected);
+        $extension = $this->extensions->firstWhere(fn ($item) => $item::class == $extension);
 
-            if ($command->settings) {
-                return ($command->settings)();
-            }
-        }
+        return $extension->commands->firstWhere('name', $command);
     }
 
     public function updatedSettings()
