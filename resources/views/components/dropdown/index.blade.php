@@ -4,7 +4,7 @@
     <div class="flex hover:bg-neutral-600" @click="open" {{ $head->attributes }}>
         {{ $head }}
     </div>
-    <div class="absolute bottom-6 {{ $postion == 'left' ? 'left-0' : 'right-0' }} pointer-events-none opacity-0 grid gap-2 bg-neutral-700 rounded-lg p-2" 
+    <div class="absolute bottom-6 {{ $postion == 'left' ? 'left-0' : 'right-0' }} pointer-events-none opacity-0 grid gap-2 w-52 bg-neutral-700 rounded-lg p-2" 
         :class="show && 'pointer-events-auto opacity-100'" data-id="body">
         {{ $slot }}
         <x-text-input x-ref="search" type="text" 
