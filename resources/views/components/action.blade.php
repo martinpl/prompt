@@ -6,6 +6,6 @@
     }
 @endphp
 
-<x-dropdown.item {{ $attributes->merge(['wire:click' => $action]) }} :$index>
+<x-dropdown-item {{ $attributes->merge(['wire:click' => $action]) }} :$index>
     {{ $title }}
-</x-dropdown.item>
+</x-dropdown-item>

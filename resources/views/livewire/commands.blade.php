@@ -1,6 +1,6 @@
 <x-list>
     @foreach ($this->commands as $command)
-        <x-list.item :title="$command->title" :subtitle="$command->extension->title" :accessories="[['text' => $command->type]]" :index="$loop->index">
+        <x-list-item :title="$command->title" :subtitle="$command->extension->title" :accessories="[['text' => $command->type]]" :index="$loop->index">
             <x-action-panel>
                 @isset ($command->actions)
                     {{ ($command->actions)() }}
@@ -8,6 +8,6 @@
                     <x-action title="Open Command" action="enter" index="0" />
                 @endisset
             </x-action-panel>
-        </x-list.item>
+        </x-list-item>
     @endforeach
 </x-list>

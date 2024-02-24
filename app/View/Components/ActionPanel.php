@@ -11,6 +11,6 @@ class ActionPanel extends \Illuminate\View\Component
 
     public function render()
     {
-        return view('components.action-panel.index');
+        return view('components.action-panel');
     }
 }

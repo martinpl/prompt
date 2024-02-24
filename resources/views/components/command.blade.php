@@ -20,8 +20,8 @@
             <x-slot:head>
                 head
             </x-slot:head>
-            <x-dropdown.item :href="route('thing', 'settings')" index="0">Preferences</x-dropdown.item>
-            <x-dropdown.item :href="route('thing', 'quit')" index="1">Quit</x-dropdown.item>
+            <x-dropdown-item :href="route('thing', 'settings')" index="0">Preferences</x-dropdown-item>
+            <x-dropdown-item :href="route('thing', 'quit')" index="1">Quit</x-dropdown-item>
         </x-dropdown>
         <div id="actions" wire:ignore></div>
     </footer>
