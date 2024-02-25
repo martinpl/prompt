@@ -1,13 +1,8 @@
 
-@props(['icon', 'title', 'subtitle' => '', 'accessories', 'index'])
+@props(['icon', 'title', 'subtitle' => '', 'accessories'])
+@php($attributes = $attributes->class('h-10 px-2 flex items-center justify-between'))
 
-<div {{ $attributes->class([
-        'h-10 px-2 rounded-lg flex items-center justify-between',
-        'bg-neutral-700' => $this->selected == $index, 
-    ])->merge([
-        'data-index' => $index,
-        'wire:click' => "click($index)"
-]) }}>
+<x-item :$title :$attributes>
     <div class="flex gap-2">
         @isset ($icon)
             <img src="{{ $icon['source'] }}" class="w-6 h-6 mr-2">
@@ -29,4 +24,4 @@
         @endisset
     </div>
     {{ $slot }}
-</div>
+</x-item>

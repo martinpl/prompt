@@ -1,6 +1,4 @@
-@aware(['index'])
-
-@if (!isset($this->selected) || $this->selected == $index)
+@if (!isset($this->selected) || $this->selected == self::$index)
     @teleport('#actions')
         <div class="flex gap-2">
             <div class="flex gap-2 hover:bg-neutral-600" wire:click="enter">

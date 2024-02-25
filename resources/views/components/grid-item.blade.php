@@ -1,10 +1,11 @@
 
-@props(['title', 'subtitle' => '', 'index'])
+@props(['title', 'subtitle' => ''])
+@php($attributes = $attributes->class('aspect-square grid place-items-center'))
 
-<div {{ $attributes->class(['bg-slate-500' => $this->selected == $index, 'rounded-lg grid place-items-center']) }} wire:click="click({{ $index }})">
+<x-item :$title :$attributes>
     {{ $title }}
     @if ($subtitle)
         {{ $subtitle }}
     @endif
     {{ $slot }}
-</div>
+</x-item>
