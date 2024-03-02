@@ -1,6 +1,6 @@
 @props(['postion' => 'left'])
 
-<div class="relative" x-data="dropdown" @click.outside="show = false">
+<div {{ $attributes }} class="relative" x-data="dropdown" @click.outside="show = false">
     <div class="flex hover:bg-neutral-600" @click="open" {{ $head->attributes }}>
         {{ $head }}
     </div>
@@ -15,7 +15,7 @@
     </div>
 </div>
 
-@once
+@script
 <script>
     Alpine.data('dropdown', () => ({
         show: false,
@@ -42,4 +42,4 @@
         },
     }))
 </script>
-@endonce
+@endscript
