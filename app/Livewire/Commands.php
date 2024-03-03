@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Session;
 use Native\Laravel\Facades\Window;
 
@@ -12,25 +13,30 @@ class Commands extends \Livewire\Component
     #[Session]
     public $selected = 0;
 
-    #[\Livewire\Attributes\Computed]
+    #[Computed]
     public function commands()
     {
         return \App\Extensions::list()
             ->map(fn ($extension) => $extension->commands)
             ->flatten()
-            ->filter(fn ($command) => $command->mode == 'view' && $command->enabled);
+            ->filter(fn ($command) => $command->mode == 'view' && $command->enabled)
+            ->filter(fn ($command) => $this->filtering($command->title));
+    }
+
+    #[Computed]
+    public function command()
+    {
+        return $this->commands->index($this->selected);
     }
 
     public function enter()
     {
-        $command = $this->commands->index($this->selected);
-
-        if ($command->execute) {
-            ($command->execute)($this);
+        if ($this->command->execute) {
+            ($this->command->execute)();
         }
 
-        if ($command->route) {
-            $this->redirect($command->route);
+        if ($this->command->route) {
+            $this->redirect($this->command->route);
         }
     }
 
