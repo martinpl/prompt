@@ -22,6 +22,8 @@ class Command
 
     public $options;
 
+    public $afterSearch;
+
     public function __construct(public $title, public $extension, public $enabled)
     {
         $this->name = str($this->title)->slug->value;
@@ -46,9 +48,9 @@ class Command
         return $this;
     }
 
-    public function livewire($component)
+    public function livewire($component, $route = '')
     {
-        $this->route = "extensions/{$this->extension->name}/{$this->name}";
+        $this->route = "extensions/{$this->extension->name}/{$this->name}/".$route;
 
         if (str_contains($component, '\\')) {
             Route::get($this->route, $component)->middleware('web');
@@ -66,16 +68,23 @@ class Command
         return $this;
     }
 
-    public function actions(Closure $actions)
+    public function actions($component, $data)
     {
-        $this->actions = $actions;
+        $this->actions = new CommandView($this->extension->name, $component, $data, livewire: false);
 
         return $this;
     }
 
-    public function options(Closure $options)
+    public function options($component, $data)
     {
-        $this->options = $options;
+        $this->options = new CommandView($this->extension->name, $component, $data);
+
+        return $this;
+    }
+
+    public function afterSearch($component, $data)
+    {
+        $this->afterSearch = new CommandView($this->extension->name, $component, $data);
 
         return $this;
     }

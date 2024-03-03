@@ -63,9 +63,9 @@
             @endif
             @if ($this->selectedCommand)
                 {{ $this->selectedCommand->title }}
-                @isset($this->selectedCommand->options)
-                    <livewire:dynamic-component :is="($this->selectedCommand->options)()" />
-                @endisset
+                @if ($this->selectedCommand->options)
+                    {!! $this->selectedCommand->options !!}
+                @endif
             @endif
         </aside>
     @endif
