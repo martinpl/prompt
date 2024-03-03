@@ -5,8 +5,8 @@
                 {!! $firstCommand($slot) !!}
                 <x-keycap>en</x-keycap>
             </div>
-            <x-dropdown postion="right">
-                <x-slot:head @keydown.meta.k.window="open">
+            <x-dropdown postion="right" :hidden="!$hasItems($slot)">
+                <x-slot:head @keydown.meta.k.window.prevent="open">
                     Actions: <x-keycap>⌘</x-keycap> + <x-keycap>k</x-keycap>
                 </x-slot:head>
                 {{ $slot }}
