@@ -2,7 +2,7 @@
 
 @php
     if ($index == 0) {
-        $attributes = $attributes->merge(['wire:keydown.window.enter' => $action]);
+        $attributes = $attributes->merge(['@keyup.enter.window' => '$el.click()']);
     }
 @endphp
 
