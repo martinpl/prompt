@@ -1,4 +1,8 @@
-@props(['columns' => 5])
+@props([
+    'columns' => 5,
+    'filtering', 
+    'afterSearch' => ''
+])
 
 <x-command {{ $attributes->merge([
     'class' => 'grid grid-cols-'.$columns.' content-start gap-2',
@@ -7,7 +11,7 @@
     '@keyup.down.window' => 'down',
     '@keyup.right.window' => 'right', 
     '@keyup.left.window' => 'left',
-]) }}>
+]) }} :$afterSearch>
     {{ $slot }}
 </x-command>
 

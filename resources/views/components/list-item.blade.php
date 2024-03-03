@@ -1,8 +1,9 @@
 
 @props(['icon', 'title', 'subtitle' => '', 'accessories'])
+@aware(['filtering'])
 @php($attributes = $attributes->class('h-10 px-2 flex items-center justify-between'))
 
-<x-item :$title :$attributes>
+<x-item :$title :$filtering :$attributes>
     <div class="flex gap-2">
         @isset ($icon)
             <img src="{{ $icon['source'] }}" class="w-6 h-6 mr-2">
