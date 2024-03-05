@@ -26,13 +26,4 @@ trait Items
     {
         return str_contains(strtolower($title), strtolower($this->query));
     }
-
-    public function click($key)
-    {
-        if ($this->selected == $key) {
-            $this->enter();
-        } else {
-            $this->selected = $key;
-        }
-    }
 }

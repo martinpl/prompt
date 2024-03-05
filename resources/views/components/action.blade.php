@@ -1,11 +1,13 @@
-@props(['title', 'action' => false, 'index'])
+@props([
+    'title', 
+    'action' => false, 
+    'index'
+])
 
-@php
-    if ($index == 0) {
-        $attributes = $attributes->merge(['@keyup.enter.window' => '$el.click()']);
-    }
-@endphp
-
-<x-dropdown-item {{ $attributes->merge(['wire:click' => $action]) }} :$index>
+<x-dropdown-item {{ $attributes->merge([
+    'id' => 'action-'.$index + 1, 
+    'wire:click' => $action,
+    '@keyup.enter.window' => $index == 0 ? '$el.click()' : false,
+]) }} :$index>
     {{ $title }}
 </x-dropdown-item>

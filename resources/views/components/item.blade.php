@@ -9,7 +9,7 @@
         'bg-neutral-700' => $this->selected == self::$index, 
     ])->merge([
         'data-index' => self::$index,
-        'wire:click' => 'click('.self::$index.')'
+        '@click' => $this->selected == self::$index ? "document.querySelector(`#actions-1`).click()" : '$wire.$set(`selected`, `'.self::$index.'`)',
     ]) }}>
         {{ $slot }}
     </div>
