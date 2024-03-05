@@ -64,7 +64,7 @@
             @if ($this->selectedCommand)
                 {{ $this->selectedCommand->title }}
                 @if ($this->selectedCommand->options)
-                    {!! $this->selectedCommand->options !!}
+                    {{ $this->selectedCommand->options }}
                 @endif
             @endif
         </aside>
