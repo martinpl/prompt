@@ -8,7 +8,7 @@
             </button>
         @endif
         @isset($this->query)
-            <input type="text" placeholder="Search..." class="w-full text-xl focus:outline-0 bg-neutral-800" wire:model.live="query" autofocus>
+            <input type="text" id="search" placeholder="Search..." class="w-full text-xl focus:outline-0 bg-neutral-800" wire:model.live="query" autofocus>
         @endisset
         {{ $afterSearch ?? '' }}
     </header>
