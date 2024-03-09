@@ -5,6 +5,8 @@ namespace App\Livewire;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Session;
 use Native\Laravel\Facades\Window;
+use Illuminate\Support\Facades;
+use Illuminate\View\View;
 
 class Commands extends \Livewire\Component
 {
@@ -26,7 +28,10 @@ class Commands extends \Livewire\Component
     #[Computed]
     public function command()
     {
-        return $this->commands->index($this->selected);
+        $command = $this->commands->index($this->selected);
+        Facades\View::composer('components.action', fn (View $view) => $view->with('currentExtension', $command->extension->name));
+
+        return $command;
     }
 
     public function enter()

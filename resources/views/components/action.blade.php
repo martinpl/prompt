@@ -1,13 +1,14 @@
 @props([
     'title', 
+    'href' => false,
     'action' => false, 
-    'index'
 ])
 
 <x-dropdown-item {{ $attributes->merge([
     'id' => 'action-'.$index + 1, 
     'wire:click' => $action,
-    '@keyup.enter.window' => $index == 0 ? '$el.click()' : false,
+    '@keyup.'.$shortcut.'.window' => $shortcut ? '$el.click()' : false,
+    'href' => $command ? $commandUrl($currentExtension ?? false) : $href,
 ]) }} :$index>
     {{ $title }}
 </x-dropdown-item>
