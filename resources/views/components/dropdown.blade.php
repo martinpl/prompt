@@ -8,8 +8,8 @@
         :class="show && 'pointer-events-auto opacity-100'" data-id="body">
         {{ $slot }}
         <x-text-input x-ref="search" type="text" 
-            @keydown.enter.stop="enter"
-            @keydown.escape.stop="escape"
+            @keyup.enter.stop="enter"
+            @keyup.escape.stop="escape"
             @keyup.down.stop="down" 
             @keyup.up.stop="up" />
     </div>
