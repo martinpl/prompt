@@ -1,7 +1,7 @@
 @props(['afterSearch'])
 
 <div class="h-screen flex flex-col bg-neutral-800 text-white rounded-xl overflow-hidden">
-    <header class="flex py-3 px-4 border-b border-neutral-700" wire:keydown.window.escape="escape">
+    <header class="flex py-3 px-4 border-b border-neutral-700" wire:keyup.escape.window="escape">
         @if ($this->__name != 'app.livewire.commands')
             <button class="mr-2" wire:click="escape">
                 <x-keycap><-</x-keycap>
