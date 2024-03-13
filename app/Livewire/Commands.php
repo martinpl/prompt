@@ -29,7 +29,7 @@ class Commands extends \Livewire\Component
     public function command()
     {
         $command = $this->commands->index($this->selected);
-        Facades\View::composer('components.action', fn (View $view) => $view->with('currentExtension', $command->extension->name));
+        Facades\View::composer('components.action.command', fn (View $view) => $view->with('currentExtension', $command->extension->name));
 
         return $command;
     }

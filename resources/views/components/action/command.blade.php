@@ -1,0 +1,1 @@
+<x-action :href="$commandUrl($currentExtension ?? false)" :$attributes :$index />

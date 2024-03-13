@@ -1,6 +1,5 @@
 @props([
     'title', 
-    'href' => false,
     'action' => false, 
 ])
 
@@ -8,7 +7,6 @@
     'id' => 'action-'.$index + 1, 
     'wire:click' => $action,
     '@keyup.'.$shortcut.'.window' => $shortcut ? '$el.click()' : false,
-    'href' => $command ? $commandUrl($currentExtension ?? false) : $href,
 ]) }} :$index>
     {{ $title }}
 </x-dropdown-item>

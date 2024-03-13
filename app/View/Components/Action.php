@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 class Action extends \Illuminate\View\Component
 {
-    public function __construct(public $index, public $command = false, public $shortcut = false) 
+    public function __construct(public $index, public $shortcut = false) 
     {
         $this->setShortcut();
     }
@@ -17,19 +17,6 @@ class Action extends \Illuminate\View\Component
         ];
         
         $this->shortcut = $shortcuts[$shortcut] ?? $shortcut;
-    }
-
-    public function commandUrl($currentExtension)
-    {
-        if (!$this->command) {
-            return;
-        }
-
-        if (!$currentExtension) {
-            $currentExtension = str(url()->full())->after('extensions/')->before('/');
-        }
-
-        return '/extensions/'.$currentExtension.'/'.$this->command;
     }
 
     public function render()
