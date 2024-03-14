@@ -23,12 +23,12 @@
         },
         up() {
             if (this.count()) {
-                $wire.$set('selected', ($wire.selected - $wire.columns + this.count()) % this.count())
+                $wire.$set('selected', ($wire.selected - {{ $columns }} + this.count()) % this.count())
             }
         },
         down() {
             if (this.count()) {
-                $wire.$set('selected', ($wire.selected + $wire.columns) % this.count())
+                $wire.$set('selected', ($wire.selected + {{ $columns }}) % this.count())
             }
         },
         right() {
