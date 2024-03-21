@@ -15,7 +15,7 @@
     <div {{ $attributes->merge(['class' => 'h-full overflow-x-auto m-2']) }}>
         {{ $slot }}
     </div>
-    <footer class="w-full flex justify-between py-3 px-4 bg-zinc-800">
+    <footer class="w-full h-full max-h-12 flex items-center justify-between py-2 px-2 bg-zinc-800">
         <x-dropdown>
             <x-slot:head>
                 head
@@ -23,6 +23,6 @@
             <x-dropdown-item :href="route('thing', 'settings')" index="0">Preferences</x-dropdown-item>
             <x-dropdown-item :href="route('thing', 'quit')" index="1">Quit</x-dropdown-item>
         </x-dropdown>
-        <div id="actions" wire:ignore></div>
+        @stack('actions')
     </footer>
 </div>

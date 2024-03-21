@@ -1,16 +1,16 @@
-@if (!isset($this->selected) || $this->selected == self::$index)
-    @teleport('#actions')
-        <div class="flex gap-2">
-            <div class="flex gap-2 hover:bg-neutral-600" wire:click="enter">
-                {!! $firstCommand($slot) !!}
-                <x-keycap>en</x-keycap>
-            </div>
-            <x-dropdown postion="right" :hidden="!$hasItems($slot)">
-                <x-slot:head @keydown.meta.k.window.prevent="open">
-                    Actions: <x-keycap>⌘</x-keycap> + <x-keycap>k</x-keycap>
-                </x-slot:head>
-                {{ $slot }}
-            </x-dropdown>
+@props(['if' => !isset($this->selected) || $this->selected == self::$index])
+
+@pushIf($if, 'actions')
+    <div class="flex gap-2">
+        <div class="flex gap-2 hover:bg-neutral-600 rounded-lg p-1" wire:click="enter">
+            {!! $firstCommand($slot) !!}
+            <x-keycap>en</x-keycap>
         </div>
-    @endteleport
-@endif
+        <x-dropdown postion="right" :hidden="!$hasItems($slot)">
+            <x-slot:head @keydown.meta.k.window.prevent="open">
+                Actions: <x-keycap>⌘</x-keycap> + <x-keycap>k</x-keycap>
+            </x-slot:head>
+            {{ $slot }}
+        </x-dropdown>
+    </div>
+@endpushIf
