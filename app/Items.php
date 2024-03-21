@@ -12,12 +12,12 @@ trait Items
 
     public $selected = 0;
 
-    public function updatedQuery()
+    public function updatedQueryItems()
     {
         $this->reset('selected');
     }
 
-    public function updatedSelected()
+    public function updatedSelectedItems()
     {
         $this->js('document.querySelector(`[data-index="${$wire.selected}"]`).scrollIntoView(false)');
     }
