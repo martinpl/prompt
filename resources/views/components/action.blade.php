@@ -7,7 +7,7 @@
 <x-dropdown-item {{ $attributes->merge([
     'id' => 'action-'.$index + 1, 
     'wire:click' => $action,
-    '@keyup.'.$shortcut.'.window' => $shortcut ? '$el.click()' : false,
+    '@keyup.'.$shortcut.'.stop.document' => $shortcut ? '$el.click()' : false,
 ]) }} :$index>
     {{ $title }}
 </x-dropdown-item>
