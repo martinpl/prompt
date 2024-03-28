@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes rotate {
+    0% {
+        border-image: linear-gradient(to right, #525252, #404040) 1;
+    }
+    50% {
+        border-image: linear-gradient(to right, #404040, #525252) 1;
+    }
+    100% {
+        border-image: linear-gradient(to right, #525252, #404040) 1;
+    }
+}
+
+.border-loading {
+    animation: rotate 1s linear infinite;
+}
