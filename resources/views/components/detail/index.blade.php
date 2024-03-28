@@ -1,3 +1,3 @@
-<x-command>
+<x-command :$attributes>
     {{ $slot }}
 </x-command>
