@@ -4,19 +4,9 @@ namespace App\View\Components;
 
 class Action extends \Illuminate\View\Component
 {
-    public function __construct(public $index, public $shortcut = false) 
+    public function __construct(public $index, public $shortcut = false)
     {
-        $this->setShortcut();
-    }
-
-    private function setShortcut()
-    {
-        $shortcut = $this->index == 0 ? 'enter' : $this->shortcut;
-        $shortcuts = [
-            'remove' => 'delete',
-        ];
-        
-        $this->shortcut = $shortcuts[$shortcut] ?? $shortcut;
+        $this->shortcut = $this->index == 0 && ! $this->shortcut ? 'enter' : $this->shortcut;
     }
 
     public function render()
