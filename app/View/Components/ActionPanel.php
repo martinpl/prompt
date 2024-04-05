@@ -6,7 +6,7 @@ class ActionPanel extends \Illuminate\View\Component
 {
     public function firstCommand($slot)
     {
-        return str($slot)->before('</')->after('">');
+        return str($slot)->before('</div>')->after('<div>');
     }
 
     public function hasItems($slot)
