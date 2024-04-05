@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Extensions;
 use App\Support\Macros\CollectionMacros;
+use App\View\Directives;
 use Illuminate\Support\Facades\App;
 
 class AppServiceProvider extends \Illuminate\Support\ServiceProvider
@@ -20,6 +21,7 @@ class AppServiceProvider extends \Illuminate\Support\ServiceProvider
         }
 
         Extensions::bootstrap();
+        Directives::bootstrap();
     }
 
     /**
