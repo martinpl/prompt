@@ -9,7 +9,7 @@
         <div class="max-h-36 overflow-y-auto grid gap-1">
             {{ $slot }}
         </div>
-        <x-text-input x-ref="search" type="text" 
+        <x-text-input x-ref="dropdownSearch" type="text" 
             @keyup.enter.stop="enter"
             @keyup.escape.stop="escape"
             @keyup.down.stop="down" 
@@ -24,7 +24,7 @@
         selected: 0,
         open() {
             this.show = true;
-            this.$refs.search.focus()
+            this.$refs.dropdownSearch.focus()
         },
         count() {
             return this.$root.querySelectorAll('[data-id="body"] [data-id="item"]').length;
