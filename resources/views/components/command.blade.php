@@ -11,7 +11,7 @@
             </button>
         @endif
         @isset($this->query)
-            <input type="text" x-ref="search" placeholder="{{ $searchBarPlaceholder }}" class="w-full text-xl focus:outline-0 bg-neutral-800" wire:model.live="query" autofocus>
+            <input type="text" id="search" x-ref="search" placeholder="{{ $searchBarPlaceholder }}" class="w-full text-xl focus:outline-0 bg-neutral-800" wire:model.live="query" autofocus>
         @endisset
         {{ $afterSearch }}
     </header>
@@ -21,7 +21,7 @@
     <footer class="w-full h-full max-h-12 flex items-center justify-between py-2 px-2 bg-zinc-800">
         <x-dropdown>
             <x-slot:head>
-                head
+                <x-icon icon="alien" />
             </x-slot:head>
             <x-dropdown-item :href="route('thing', 'settings')" index="0">Preferences</x-dropdown-item>
             <x-dropdown-item :href="route('thing', 'quit')" index="1">Quit</x-dropdown-item>
