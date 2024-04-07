@@ -30,8 +30,8 @@ class Thing
         Window::open('settings')
             ->route('settings')
             ->title('Preferences')
-            ->width(750)
-            ->height(480)
+            ->width(900)
+            ->height(540)
             ->frameless(true)
             ->transparent(true)
             ->showDevTools(false);

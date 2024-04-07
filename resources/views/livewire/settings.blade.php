@@ -2,7 +2,7 @@
     {{-- <nav>
         <button @click="tab = 'extensions'">Extensions</button>
     </nav> --}}
-    <main class="w-full">
+    <main class="basis-8/12 pt-2 pl-2">
         <div x-show="tab == 'extensions'" x-cloak>
             <div class="grid grid-cols-3">
                 <div>Name</div>
@@ -17,8 +17,8 @@
                         <div @class(['grid grid-cols-3', 'bg-neutral-700' => $selected == $extension::class]) wire:click="$set('selected', '{{ addslashes($extension::class) }}')">
                             <div class="flex gap-2">
                                 <div @click="show = !show">
-                                    <span x-show="show">&#9660;</span>
-                                    <span x-show="!show">&#5171;</span>
+                                    <x-icon icon="caret-down" x-show="show" />
+                                    <x-icon icon="caret-right" x-show="!show" />
                                 </div>
                                 {{ $extension->title }}
                             </div>
@@ -54,7 +54,7 @@
         </div>
     </main>
     @if ($this->selectedExtension || $this->selectedCommand)
-        <aside>
+        <aside class="basis-4/12">
             @if ($this->selectedExtension)
                 {{ $this->selectedExtension->title }}
                 @if (method_exists($this->selectedExtension, 'options'))
