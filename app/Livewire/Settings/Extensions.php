@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Settings;
 
-use App\Extensions;
-use App\Meta;
+use App\Thing;
+use App\Extensions as AppExtensions;
 use Livewire\Attributes\Computed;
 
-class Settings extends \Livewire\Component
+class Extensions extends \Livewire\Component
 {
     public $settings;
 
@@ -28,15 +28,10 @@ class Settings extends \Livewire\Component
             ->all();
     }
 
-    public static function meta($key)
-    {
-        return new Meta('settings', $key);
-    }
-
     #[Computed]
     public function extensions()
     {
-        return Extensions::list();
+        return AppExtensions::list();
     }
 
     #[Computed]
@@ -64,11 +59,11 @@ class Settings extends \Livewire\Component
 
     public function updatedSettings()
     {
-        self::meta('extensions')->save($this->settings);
+        Thing::settings('extensions')->save($this->settings);
     }
 
     public function render()
     {
-        return view('livewire.settings');
+        return view('livewire.settings.extensions');
     }
 }

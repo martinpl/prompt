@@ -19,4 +19,9 @@ class Thing
             ->transparent(true)
             ->showDevTools(false);
     }
+
+    public static function settings($key)
+    {
+        return new Meta('settings', $key);
+    }
 }

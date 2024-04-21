@@ -2,8 +2,6 @@
 
 namespace App;
 
-use App\Livewire\Settings;
-
 class Extensions
 {
     public static $list = [];
@@ -25,7 +23,7 @@ class Extensions
     private static function autoloader()
     {
         spl_autoload_register(function ($className) {
-            if (str_contains($className, 'Extensions')) {
+            if (str_starts_with($className, 'Extensions\\')) {
                 $dirs = str($className)->beforeLast('\\')->explode('\\')->map(fn ($part) => str($part)->kebab())->implode('/');
                 $fileName = str($className)->afterLast('\\').'.php';
                 $path = $dirs.'/'.$fileName;
@@ -57,6 +55,6 @@ class Extensions
 
     private static function settings()
     {
-        self::$settings = Settings::meta('extensions')->first();
+        self::$settings = Thing::settings('extensions')->first();
     }
 }

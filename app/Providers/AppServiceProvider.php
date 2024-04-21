@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Thing;
 use App\Extensions;
 use App\Support\Macros\CollectionMacros;
 use App\View\Directives;
@@ -19,6 +20,8 @@ class AppServiceProvider extends \Illuminate\Support\ServiceProvider
         if (App::runningInConsole()) {
             return;
         }
+
+        config(['app.debug' => Thing::settings('advanced')->first()['debugMode'] ?? false]);
 
         Extensions::bootstrap();
         Directives::bootstrap();
