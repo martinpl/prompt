@@ -11,9 +11,9 @@ class EventServiceProvider extends \Illuminate\Foundation\Support\Providers\Even
      */
     public function boot(): void
     {
-        Event::listen(fn (\App\Events\Thing $event) => abort(redirect('/thing/toggle')));
-        Event::listen(fn (\App\Events\Settings $event) => abort(redirect('/thing/settings')));
-        Event::listen(fn (\Native\Laravel\Events\MenuBar\MenuBarShown $event) => abort(redirect('/thing/toggle')));
+        Event::listen(fn (\App\Events\Prompt $event) => abort(redirect('/prompt/toggle')));
+        Event::listen(fn (\App\Events\Settings $event) => abort(redirect('/prompt/settings')));
+        Event::listen(fn (\Native\Laravel\Events\MenuBar\MenuBarShown $event) => abort(redirect('/prompt/toggle')));
     }
 
     /**

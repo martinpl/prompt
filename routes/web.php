@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', App\Livewire\Commands::class)->name('commands');
-Route::get('/thing/{command}', App\Http\Controllers\Thing::class)->name('thing');
+Route::get('/prompt/{command}', App\Http\Controllers\Prompt::class)->name('prompt');
 Route::get('/action/{action}', App\Http\Controllers\ActionController::class)->name('action');
 Route::view('/settings', 'components.settings')->name('settings');

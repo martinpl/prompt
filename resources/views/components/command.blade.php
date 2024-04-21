@@ -23,8 +23,8 @@
             <x-slot:head>
                 <x-icon icon="alien" />
             </x-slot:head>
-            <x-dropdown-item :href="route('thing', 'settings')" index="0">Preferences</x-dropdown-item>
-            <x-dropdown-item :href="route('thing', 'quit')" index="1">Quit</x-dropdown-item>
+            <x-dropdown-item :href="route('prompt', 'settings')" index="0">Preferences</x-dropdown-item>
+            <x-dropdown-item :href="route('prompt', 'quit')" index="1">Quit</x-dropdown-item>
         </x-dropdown>
         @stack('actions')
     </footer>

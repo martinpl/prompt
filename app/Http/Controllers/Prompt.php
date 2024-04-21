@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Native\Laravel\Facades\Window;
 
-class Thing
+class Prompt
 {
     public function __invoke($command)
     {
@@ -16,7 +16,7 @@ class Thing
     private function toggle()
     {
         Window::open()
-            ->title('Thing')
+            ->title(config('app.name'))
             ->width(750)
             ->height(480)
         // ->resizable(false)

@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Settings;
 
-use App\Thing;
+use App\Prompt;
 use App\Extensions as AppExtensions;
 use Livewire\Attributes\Computed;
 
@@ -59,7 +59,7 @@ class Extensions extends \Livewire\Component
 
     public function updatedSettings()
     {
-        Thing::settings('extensions')->save($this->settings);
+        Prompt::settings('extensions')->save($this->settings);
     }
 
     public function render()

@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Settings;
 
-use App\Thing;
+use App\Prompt;
 
 class Advanced extends \Livewire\Component
 {
@@ -10,12 +10,12 @@ class Advanced extends \Livewire\Component
 
     public function mount()
     {
-        $this->options = Thing::settings('advanced')->first();
+        $this->options = Prompt::settings('advanced')->first();
     }
 
     public function updatedOptions()
     {
-        Thing::settings('advanced')->save($this->options);
+        Prompt::settings('advanced')->save($this->options);
     }
 
     public function render()

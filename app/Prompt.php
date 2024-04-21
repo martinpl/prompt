@@ -4,7 +4,7 @@ namespace App;
 
 use Native\Laravel\Facades\Window;
 
-class Thing
+class Prompt
 {
     // https://github.com/NativePHP/laravel/pull/144
     // https://github.com/NativePHP/laravel/discussions/247

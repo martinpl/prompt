@@ -55,6 +55,6 @@ class Extensions
 
     private static function settings()
     {
-        self::$settings = Thing::settings('extensions')->first();
+        self::$settings = Prompt::settings('extensions')->first();
     }
 }
