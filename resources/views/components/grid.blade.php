@@ -1,11 +1,18 @@
 @props([
     'columns' => 5,
     'filtering', 
-    'afterSearch' => ''
+    'afterSearch' => '',
+    'columnClass' => match ($columns) {
+        4 => 'grid-cols-4',
+        5 => 'grid-cols-5',
+        6 => 'grid-cols-6',
+        7 => 'grid-cols-7',
+        8 => 'grid-cols-8',
+    }
 ])
 
 <x-command {{ $attributes->merge([
-    'class' => 'grid grid-cols-'.$columns.' content-start gap-2',
+    'class' => 'grid '.$columnClass.' content-start gap-2',
     'x-data' => 'grid',
     '@keyup.up.window' => 'up', 
     '@keyup.down.window' => 'down',
