@@ -24,4 +24,14 @@ class Prompt
     {
         return new Meta('settings', $key);
     }
+
+    public static function storagePath($path)
+    {
+        if (app()->isProduction()) {
+            // TODO: Support XDG
+            return Storage::disk('user_home')->path('/.prompt/'.$path);
+        }
+
+        return storage_path($path);
+    }
 }

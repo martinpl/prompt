@@ -27,14 +27,14 @@ class Extensions
                 $dirs = str($className)->beforeLast('\\')->explode('\\')->map(fn ($part) => str($part)->kebab())->implode('/');
                 $fileName = str($className)->afterLast('\\').'.php';
                 $path = $dirs.'/'.$fileName;
-                include storage_path($path);
+                include Prompt::storagePath($path);
             }
         });
     }
 
     private static function register()
     {
-        $extensionFiles = collect(glob(storage_path('/extensions/*/*.php'))) // TODO: Move dir to user space
+        $extensionFiles = collect(glob(Prompt::storagePath('/extensions/*/*.php')))
             ->reject(function ($path) {
                 $filename = basename($path, '.php');
                 $dirName = str($path)->explode('/')->index(-2);
