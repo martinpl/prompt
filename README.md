@@ -2,7 +2,7 @@
 
 # About Prompt
 
-Prompt is a proof of concept php-based desktop command palette application built with [Laravel](https://laravel.com/) [Livewire](https://livewire.laravel.com/) and [NativePHP]([https://nativephp.com/). It is designed to be easily extensible, allowing developers to seamlessly integrate functionalities. The API is inspired by Raycast.
+Prompt is a proof of concept php-based desktop command palette application built with [Laravel](https://laravel.com/) [Livewire](https://livewire.laravel.com/) and [NativePHP](https://nativephp.com/). It is designed to be easily extensible, allowing developers to seamlessly integrate functionalities. The API is inspired by Raycast.
 
 ![](docs/presentation.gif)
 
