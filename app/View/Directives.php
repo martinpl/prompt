@@ -2,8 +2,8 @@
 
 namespace App\View;
 
+use App\Facades\BladeHelper;
 use Illuminate\View\ComponentAttributeBag;
-use ImLiam\BladeHelper\Facades\BladeHelper;
 
 class Directives
 {

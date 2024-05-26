@@ -15,7 +15,7 @@ return [
 
     'paths' => [
         resource_path('views'),
-        ...config('prompt.paths')
+        ...config('prompt.paths'),
     ],
 
     /*

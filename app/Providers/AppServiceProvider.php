@@ -2,17 +2,15 @@
 
 namespace App\Providers;
 
-use App\Prompt;
 use App\Extensions;
+use App\Prompt;
 use App\Support\Macros\CollectionMacros;
 use App\View\Directives;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Event;
 
 class AppServiceProvider extends \Illuminate\Support\ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
         CollectionMacros::bootstrap();
@@ -27,11 +25,15 @@ class AppServiceProvider extends \Illuminate\Support\ServiceProvider
         Directives::bootstrap();
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
-        //
+        $this->registerEventListeners();
+    }
+
+    public function registerEventListeners()
+    {
+        Event::listen(fn (\App\Events\Prompt $event) => abort(redirect('/prompt/toggle')));
+        Event::listen(fn (\App\Events\Settings $event) => abort(redirect('/prompt/settings')));
+        Event::listen(fn (\Native\Laravel\Events\MenuBar\MenuBarShown $event) => abort(redirect('/prompt/toggle')));
     }
 }
