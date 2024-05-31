@@ -6,7 +6,6 @@ use App\Extensions;
 use App\Prompt;
 use App\Support\Macros\CollectionMacros;
 use App\View\Directives;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Event;
 
 class AppServiceProvider extends \Illuminate\Support\ServiceProvider
@@ -15,11 +14,13 @@ class AppServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         CollectionMacros::bootstrap();
 
-        if (App::runningInConsole()) {
+        if ($this->app->runningInConsole()) {
             return;
         }
 
-        config(['app.debug' => Prompt::settings('advanced')->first()['debugMode'] ?? false]);
+        if ($this->app->isProduction()) {
+            config(['app.debug' => Prompt::settings('advanced')->first()['debugMode'] ?? false]);
+        }
 
         Extensions::bootstrap();
         Directives::bootstrap();
