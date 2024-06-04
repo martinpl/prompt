@@ -3,6 +3,7 @@
 namespace App;
 
 use Native\Laravel\Facades\Window;
+use Illuminate\Support\Facades\Storage;
 
 class Prompt
 {
