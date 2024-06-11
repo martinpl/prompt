@@ -9,7 +9,7 @@ Prompt is a proof of concept php-based desktop command palette application built
 Extension examples are located in separate repository [prompt-extensions](https://github.com/MartinPL/prompt-extensions).
 Install them by copying folders to
 (production): `/homer/user/.prompt/extensions`
-(development) `/storage/extensions`
+(development) `/extensions`
 
 ## Development
 
