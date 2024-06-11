@@ -24,17 +24,17 @@ class Extensions
     {
         spl_autoload_register(function ($className) {
             if (str_starts_with($className, 'Extensions\\')) {
-                $dirs = str($className)->beforeLast('\\')->explode('\\')->map(fn ($part) => str($part)->kebab())->implode('/');
+                $dirs = str($className)->after('Extensions\\')->beforeLast('\\')->explode('\\')->map(fn ($part) => str($part)->kebab())->implode('/');
                 $fileName = str($className)->afterLast('\\').'.php';
                 $path = $dirs.'/'.$fileName;
-                include Prompt::storagePath($path);
+                include config('prompt.extensions_path').'/'.$path;
             }
         });
     }
 
     private static function register()
     {
-        $extensionFiles = collect(glob(Prompt::storagePath('/extensions/*/*.php')))
+        $extensionFiles = collect(glob(config('prompt.extensions_path').'/*/*.php'))
             ->reject(function ($path) {
                 $filename = basename($path, '.php');
                 $dirName = str($path)->explode('/')->index(-2);
