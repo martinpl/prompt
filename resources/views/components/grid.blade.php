@@ -1,7 +1,6 @@
 @props([
     'columns' => 5,
     'filtering', 
-    'afterSearch' => '',
     'columnClass' => match ($columns) {
         4 => 'grid-cols-4',
         5 => 'grid-cols-5',
@@ -18,7 +17,7 @@
     '@keyup.down.window' => 'down',
     '@keyup.right.window' => 'right', 
     '@keyup.left.window' => 'left',
-]) }} :$afterSearch>
+]) }}>
     {{ $slot }}
 </x-command>
 

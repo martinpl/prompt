@@ -1,6 +1,6 @@
 @props(['shouldRender' => !isset($this->selected) || $this->selected == self::$index])
 
-@pushIf($shouldRender, 'actions')
+@pushIf($shouldRender, 'actionPanel')
     <div class="flex gap-2">
         <div class="flex gap-2 hover:bg-neutral-600 rounded-lg p-1" wire:click="enter">
             {!! $firstCommand($slot) !!}

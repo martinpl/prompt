@@ -1,13 +1,12 @@
 @props([
     'filtering', 
-    'afterSearch' => ''
 ])
 
 <x-command {{ $attributes->merge([
     'x-data' => 'list', 
     '@keyup.up.window' => 'up', 
     '@keyup.down.window' => 'down',
-]) }} :$afterSearch>
+]) }}>
     {{ $slot }}
 </x-command>
 

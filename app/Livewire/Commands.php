@@ -2,11 +2,11 @@
 
 namespace App\Livewire;
 
+use Illuminate\Support\Facades;
+use Illuminate\View\View;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Session;
 use Native\Laravel\Facades\Window;
-use Illuminate\Support\Facades;
-use Illuminate\View\View;
 
 class Commands extends \Livewire\Component
 {
@@ -36,13 +36,7 @@ class Commands extends \Livewire\Component
 
     public function enter()
     {
-        if ($this->command->execute) {
-            ($this->command->execute)();
-        }
-
-        if ($this->command->route) {
-            $this->redirect($this->command->route);
-        }
+        $this->redirect($this->command->route);
     }
 
     public function escape()

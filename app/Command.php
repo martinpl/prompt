@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Closure;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -16,13 +15,11 @@ class Command
 
     public $route;
 
-    public $execute;
-
-    public $actions;
+    public $parameters;
 
     public $options;
 
-    public $afterSearch;
+    public $stacks = [];
 
     public function __construct(public $title, public $extension, public $enabled)
     {
@@ -48,31 +45,26 @@ class Command
         return $this;
     }
 
-    public function livewire($component, $route = '')
+    public function parameters($parameters)
     {
-        $this->route = "extensions/{$this->extension->name}/{$this->name}/".$route;
+        $this->parameters = $parameters;
 
-        if (str_contains($component, '\\')) {
-            Route::get($this->route, $component)->middleware('web');
-        } else {
-            Volt::route($this->route, "{$this->extension->name}.{$component}")->middleware('web');
+        return $this;
+    }
+
+    public function invoke($handle)
+    {
+        $this->route = "extensions/{$this->extension->name}/{$this->name}/".$this->parameters;
+
+        $isVolt = is_string($handle) && ! str_contains($handle, '\\');
+
+        if (! $isVolt) {
+            Route::get($this->route, $handle)->middleware('web');
         }
 
-        return $this;
-    }
-
-    public function execute(Closure $execute)
-    {
-        $this->execute = $execute;
-
-        return $this;
-    }
-
-    public function actions($component, $data)
-    {
-        $this->actions = new CommandView($this->extension->name, $component, $data, livewire: false);
-
-        return $this;
+        if ($isVolt) {
+            Volt::route($this->route, "{$this->extension->name}.{$handle}")->middleware('web');
+        }
     }
 
     public function options($component, $data)
@@ -82,9 +74,9 @@ class Command
         return $this;
     }
 
-    public function afterSearch($component, $data)
+    public function addStack($stack, $component, $data, $livewire = true)
     {
-        $this->afterSearch = new CommandView($this->extension->name, $component, $data);
+        $this->stacks[$stack] = new CommandView($this->extension->name, $component, $data, $livewire);
 
         return $this;
     }

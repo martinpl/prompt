@@ -7,9 +7,7 @@ use Illuminate\Support\Facades\Blade;
 
 class CommandView implements Htmlable
 {
-    public function __construct(public string $extension, public string $component, public array $data = [], public bool $livewire = true)
-    {
-    }
+    public function __construct(public string $extension, public string $component, public array $data = [], public bool $livewire = true) {}
 
     public function toHtml()
     {

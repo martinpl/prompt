@@ -1,6 +1,5 @@
 @props([
     'searchBarPlaceholder' => 'Search...',
-    'afterSearch' => '',
 ])
 
 <div class="h-screen flex flex-col bg-neutral-800 text-white rounded-xl overflow-hidden" wire:keyup.escape.window="escape">
@@ -13,7 +12,7 @@
         @isset($this->query)
             <input type="text" id="search" x-ref="search" placeholder="{{ $searchBarPlaceholder }}" class="w-full text-xl focus:outline-0 bg-neutral-800" wire:model.live="query" autofocus>
         @endisset
-        {{ $afterSearch }}
+        @stack('afterSearch')
     </header>
     <div {{ $attributes->merge(['class' => 'h-full overflow-x-auto m-2']) }}>
         {{ $slot }}
@@ -26,6 +25,6 @@
             <x-dropdown-item :href="route('prompt', 'settings')" index="0">Preferences</x-dropdown-item>
             <x-dropdown-item :href="route('prompt', 'quit')" index="1">Quit</x-dropdown-item>
         </x-dropdown>
-        @stack('actions')
+        @stack('actionPanel')
     </footer>
 </div>
