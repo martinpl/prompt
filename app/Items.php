@@ -26,4 +26,9 @@ trait Items
     {
         return str_contains(strtolower($title), strtolower($this->query));
     }
+
+    public function isSelected()
+    {
+        return $this->selected == self::$index;
+    }
 }

@@ -1,15 +1,15 @@
 @props([
-    'filtering' => true, 
-    'title'
+    'filtering' => true,
+    'title',
 ])
 
 @if (!$filtering || $this->filtering($title))
     <div {{ $attributes->class([
         'rounded-lg',
-        'bg-neutral-700' => $this->selected == self::$index, 
+        'bg-neutral-700' => $this->isSelected(),
     ])->merge([
         'data-index' => self::$index,
-        '@click' => $this->selected == self::$index ? "document.querySelector(`#action-1`).click()" : '$wire.$set(`selected`, `'.self::$index.'`)',
+        '@click' => $this->isSelected() ? "document.querySelector(`#action-1`).click()" : '$wire.$set(`selected`, `'.self::$index.'`)',
     ]) }}>
         {{ $slot }}
     </div>

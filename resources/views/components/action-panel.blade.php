@@ -1,4 +1,4 @@
-@props(['shouldRender' => !isset($this->selected) || $this->selected == self::$index])
+@props(['shouldRender' => !isset($this->selected) || $this->isSelected()])
 
 @pushIf($shouldRender, 'actionPanel')
     <div class="flex gap-2">

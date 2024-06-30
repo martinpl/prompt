@@ -6,7 +6,7 @@ use App\View\Components\Action;
 
 class Command extends Action
 {
-    public function __construct(public $index, public $target, public $shortcut = false) 
+    public function __construct(public $target, public $shortcut = false) 
     {
     }
 

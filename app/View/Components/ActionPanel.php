@@ -4,6 +4,13 @@ namespace App\View\Components;
 
 class ActionPanel extends \Illuminate\View\Component
 {
+    public static $index;
+
+    public function __construct()
+    {
+        self::$index = 0;
+    }
+
     public function firstCommand($slot)
     {
         return str($slot)->before('</div>')->after('<div>');
