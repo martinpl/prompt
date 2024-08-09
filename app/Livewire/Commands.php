@@ -42,7 +42,7 @@ class Commands extends \Livewire\Component
     public function escape()
     {
         if ($this->query == '') {
-            Window::close('main'); // https://github.com/NativePHP/laravel/pull/144
+            Window::hide('main');
         } else {
             $this->reset('query');
         }
