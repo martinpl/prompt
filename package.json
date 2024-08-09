@@ -5,6 +5,7 @@
         "dev": "vite",
         "build": "vite build",
         "serve": "php artisan native:serve",
+        "build:linux": "php artisan native:build linux",
         "postinstall": "cp node_modules/@phosphor-icons/core/assets/regular/* resources/icons"
     },
     "devDependencies": {
